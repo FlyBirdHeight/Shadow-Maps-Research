@@ -9,13 +9,13 @@ uniform mat4 model;
 uniform mat4 lightSpaceMatrix;
 
 out vec3 Normal;
-out vec2 TexCoord;
+out vec2 TexCoords;
 out vec3 FragPos;
 out vec4 FragLightPos;
 
 void main(){
-    Normal = aNormal;
-    TexCoord = aTexCoords;
+    Normal = transpose(inverse(mat3(model))) * aNormal;
+    TexCoords = aTexCoords;
     FragPos = vec3(model * vec4(aPos, 1.0));
     FragLightPos = lightSpaceMatrix * vec4(FragPos, 1.0);
     
