@@ -86,15 +86,14 @@ void ShadowMaps::render(GLFWwindow *window){
     float near_plane = 1.0f;
     float far_plane = 7.5f;
     
-    Shader lightSceneShader("/Users/adsionli/code/c++/ShadowMaps/ShadowMaps/shader/vs/point_shadow/light_scene.vs", "/Users/adsionli/code/c++/ShadowMaps/ShadowMaps/shader/fs/point_shadow/light_scene.fs");
-    Shader objShader("/Users/adsionli/code/c++/ShadowMaps/ShadowMaps/shader/vs/point_shadow/point_shadow.vs", "/Users/adsionli/code/c++/ShadowMaps/ShadowMaps/shader/fs/point_shadow/point_shadow.fs");
+    Shader lightSceneShader(FileSystem::getPath("shader/vs/point_shadow/light_scene.vs").c_str(), FileSystem::getPath("shader/fs/point_shadow/light_scene.fs").c_str());
+    Shader objShader(FileSystem::getPath("shader/vs/point_shadow/point_shadow.vs").c_str(), FileSystem::getPath("shader/fs/point_shadow/point_shadow.fs").c_str());
     
     objShader.use();
     objShader.setInt("diffuseTexture", 0);
     objShader.setInt("shadowMap", 1);
-    
-    const char* texturePath = "/Users/adsionli/code/c++/ShadowMaps/ShadowMaps/resources/image/wood.png";
-    unsigned int woodTexture = loadTexture(texturePath);
+
+    unsigned int woodTexture = loadTexture(FileSystem::getPath("resources/image/wood.png").c_str());
     
     glm::vec3 lightPos(-2.0f, 4.0f, -1.0f);
     while (!glfwWindowShouldClose(window)) {

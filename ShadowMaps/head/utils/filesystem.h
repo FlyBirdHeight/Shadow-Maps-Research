@@ -13,6 +13,7 @@
 
 class FileSystem
 {
+    
 private:
     typedef std::string (*Builder) (const std::string& path);
 
@@ -26,7 +27,9 @@ public:
 private:
     static std::string const & getRoot()
     {
-        static char const * envRoot = getenv("LOGL_ROOT_PATH");
+        const char * logl_root = "${CMAKE_SOURCE_DIR}";
+        static char const * envRoot = "/Users/adsionli/code/c++/ShadowMaps/ShadowMaps";
+        
         static char const * givenRoot = (envRoot != nullptr ? envRoot : logl_root);
         static std::string root = (givenRoot != nullptr ? givenRoot : "");
         return root;
