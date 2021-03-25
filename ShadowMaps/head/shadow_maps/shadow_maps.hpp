@@ -1,10 +1,3 @@
-//
-//  点光源阴影
-//  ShadowMaps
-//
-//  Created by adsionli on 2021/3/18.
-//
-
 #ifndef shadow_maps_hpp
 #define shadow_maps_hpp
 #include "filesystem.h"

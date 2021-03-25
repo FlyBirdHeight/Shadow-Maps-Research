@@ -1,8 +1,6 @@
-#include "shadow_maps.hpp"
-#include "filesystem.h"
-#include <iostream>
-int main(int argc, const char * argv[]) {
-    ShadowMaps objInfo;
+#include "point_shader.hpp"
+int main() {
+    PointShadow objInfo;
     objInfo.createWindow();
     
     return 0;

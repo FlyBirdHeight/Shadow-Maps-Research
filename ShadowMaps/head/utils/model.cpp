@@ -1,43 +1,4 @@
-#ifndef model_h
-#define model_h
-#include <glad/glad.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
-#define STB_IMAGE_IMPLEMENTATION    // include之前必须定义
-#include "stb_image.h"
-#include <vector>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <map>
-#include "mesh.h"
-#include "shaders.h"
-unsigned int TextureFromFile(const char *path, const string &directory, bool gamma = false);
-class Model {
-public:
-    /* 模型数据向量 */
-    vector<Mesh> meshes;
-    //存储已经加载过的纹理
-    vector<Texture> textures_loaded;
-    Model(const char *path) {
-        loadModel(path);
-    }
-    void Draw(Shader& shader);
-private:
-    
-    string directory;
-    /* 函数 */
-    void loadModel(string path);
-
-    void processNode(aiNode *node, const aiScene *scene);
-    Mesh processMesh(aiMesh *mesh, const aiScene *scene);
-    vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, string typeName);
-};
-
+#include "model.hpp"
 void Model::loadModel(string path) {
     Assimp::Importer import;
     const aiScene *scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
@@ -213,6 +174,3 @@ unsigned int TextureFromFile(const char *path, const string &directory, bool gam
 
     return textureID;
 }
-
-
-#endif /* model_h */

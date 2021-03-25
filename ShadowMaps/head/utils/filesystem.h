@@ -1,10 +1,3 @@
-//
-//  filesystem.h
-//  ShadowMaps
-//
-//  Created by adsionli on 2021/3/19.
-//
-
 #ifndef filesystem_h
 #define filesystem_h
 

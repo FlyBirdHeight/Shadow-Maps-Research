@@ -1,24 +1,24 @@
 #include "shadow_maps.hpp"
-#define STB_IMAGE_IMPLEMENTATION    // include之前必须定义
-#include "stb_image.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-void processInput(GLFWwindow *window);
-unsigned int loadTexture(char const * path);
+static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+static void processInput(GLFWwindow *window);
+static unsigned int loadTexture(char const * path);
 
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+static const unsigned int SCR_WIDTH = 800;
+static const unsigned int SCR_HEIGHT = 600;
 
 // camera
-float lastX = (float)SCR_WIDTH / 2.0;
-float lastY = (float)SCR_HEIGHT / 2.0;
-bool firstMouse = true;
+static float lastX = (float)SCR_WIDTH / 2.0;
+static float lastY = (float)SCR_HEIGHT / 2.0;
+static bool firstMouse = true;
 
-Camera camera(glm::vec3(0.0, 0.0, 3.0));
-float deltaTime = 0.0;
-float lastFrame = 0.0;
+static Camera camera(glm::vec3(0.0, 0.0, 3.0));
+static float deltaTime = 0.0;
+static float lastFrame = 0.0;
 ShadowMaps::ShadowMaps(){
 }
 
@@ -36,13 +36,13 @@ void ShadowMaps::createWindow(){
 
     if (window == NULL)
     {
-    std::cout << "Failed to create GLFW window" << std::endl;
-    glfwTerminate();
+        std::cout << "Failed to create GLFW window" << std::endl;
+        glfwTerminate();
     }
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-    std::cout << "Failed to initialize GLAD" << std::endl;
+        std::cout << "Failed to initialize GLAD" << std::endl;
     }
 
     glfwSetScrollCallback(window, scroll_callback);
@@ -86,8 +86,8 @@ void ShadowMaps::render(GLFWwindow *window){
     float near_plane = 1.0f;
     float far_plane = 7.5f;
     
-    Shader lightSceneShader(FileSystem::getPath("shader/vs/point_shadow/light_scene.vs").c_str(), FileSystem::getPath("shader/fs/point_shadow/light_scene.fs").c_str());
-    Shader objShader(FileSystem::getPath("shader/vs/point_shadow/point_shadow.vs").c_str(), FileSystem::getPath("shader/fs/point_shadow/point_shadow.fs").c_str());
+    Shader lightSceneShader(FileSystem::getPath("shader/vs/shadow_maps/light_scene.vs").c_str(), FileSystem::getPath("shader/fs/shadow_maps/light_scene.fs").c_str());
+    Shader objShader(FileSystem::getPath("shader/vs/shadow_maps/point_shadow.vs").c_str(), FileSystem::getPath("shader/fs/shadow_maps/point_shadow.fs").c_str());
     
     objShader.use();
     objShader.setInt("diffuseTexture", 0);
@@ -202,7 +202,7 @@ void ShadowMaps::InitBox(){
     glBindVertexArray(0);
 }
 
-void processInput(GLFWwindow *window)
+static void processInput(GLFWwindow *window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
@@ -227,12 +227,12 @@ void processInput(GLFWwindow *window)
     }
 }
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
 }
 
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+static void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
     if (firstMouse)
     {
@@ -250,12 +250,12 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     camera.ProcessMouseScroll(yoffset);
 }
 
-unsigned int loadTexture(char const * path)
+static unsigned int loadTexture(char const * path)
 {
     unsigned int textureID;
     glGenTextures(1, &textureID);
