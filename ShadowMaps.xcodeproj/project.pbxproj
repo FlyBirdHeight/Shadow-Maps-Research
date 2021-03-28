@@ -135,6 +135,10 @@
 		54FFA063260CB46F00E6A573 /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		54FFA064260DB0C900E6A573 /* cube.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cube.fs; sourceTree = "<group>"; };
 		54FFA066260DB47200E6A573 /* cube.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = cube.vs; sourceTree = "<group>"; };
+		54FFA069261069E800E6A573 /* light.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.frag; sourceTree = "<group>"; };
+		54FFA06A261069F600E6A573 /* light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.vs; sourceTree = "<group>"; };
+		54FFA06B26106A0000E6A573 /* obj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = obj.vs; sourceTree = "<group>"; };
+		54FFA06C26106A0C00E6A573 /* obj.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = obj.frag; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +258,7 @@
 		547B94B926044C58008545C2 /* fs */ = {
 			isa = PBXGroup;
 			children = (
+				54FFA068261069D500E6A573 /* pcss */,
 				54FFA036260C1C7000E6A573 /* point_shadow */,
 				547B94BC26044C72008545C2 /* shadow_maps */,
 			);
@@ -263,6 +268,7 @@
 		547B94BA26044C5C008545C2 /* vs */ = {
 			isa = PBXGroup;
 			children = (
+				54FFA067261069CA00E6A573 /* pcss */,
 				54FFA035260C1C6900E6A573 /* point_shadow */,
 				547B94BB26044C66008545C2 /* shadow_maps */,
 			);
@@ -480,6 +486,24 @@
 				54FFA05D260CA07B00E6A573 /* light.geo */,
 			);
 			path = point_shadow;
+			sourceTree = "<group>";
+		};
+		54FFA067261069CA00E6A573 /* pcss */ = {
+			isa = PBXGroup;
+			children = (
+				54FFA06A261069F600E6A573 /* light.vs */,
+				54FFA06B26106A0000E6A573 /* obj.vs */,
+			);
+			path = pcss;
+			sourceTree = "<group>";
+		};
+		54FFA068261069D500E6A573 /* pcss */ = {
+			isa = PBXGroup;
+			children = (
+				54FFA069261069E800E6A573 /* light.frag */,
+				54FFA06C26106A0C00E6A573 /* obj.frag */,
+			);
+			path = pcss;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
