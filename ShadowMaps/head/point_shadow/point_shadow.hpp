@@ -22,13 +22,17 @@ public:
     std::string LightShaderFs = FileSystem::getPath("shader/fs/point_shadow/light.fs");
     std::string ObjShaderVs = FileSystem::getPath("shader/vs/point_shadow/obj.vs");
     std::string ObjShaderFs = FileSystem::getPath("shader/fs/point_shadow/obj.fs");
+    std::string CubeShaderVs = FileSystem::getPath("shader/vs/point_shadow/cube.vs");
+    std::string CubeShaderFs = FileSystem::getPath("shader/fs/point_shadow/cube.fs");
 private:
     //帧缓冲对象与CubeMap深度纹理对象
     unsigned int CubeFbo, CubeDepthTex;
-    unsigned int Vao, Vbo;
+    unsigned int Vao = 0, Vbo = 0;
     const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
     //创建屏幕渲染
     void initScene(GLFWwindow *window);
+    //箱体绘制平移
+    void renderCube(Shader &shader);
     //创建箱体
     void createCube();
     //生成深度测试图

@@ -1,4 +1,5 @@
-#include "point_shader.hpp"
+#include "point_shadow.hpp"
+
 int main() {
     PointShadow objInfo;
     objInfo.createWindow();

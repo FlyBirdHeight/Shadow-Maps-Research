@@ -12,7 +12,7 @@
 		54570CFA2602EDF70072EEA2 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54570CF92602EDF70072EEA2 /* libglfw.3.3.dylib */; };
 		547B94542602F244008545C2 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 547B94532602F244008545C2 /* glad.c */; };
 		547B950B26046FE8008545C2 /* shadow_maps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547B950A26046FE8008545C2 /* shadow_maps.cpp */; };
-		54FFA032260B5EEB00E6A573 /* point_shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54FFA030260B5EEB00E6A573 /* point_shader.cpp */; };
+		54FFA032260B5EEB00E6A573 /* point_shadow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54FFA030260B5EEB00E6A573 /* point_shadow.cpp */; };
 		54FFA052260C7A5A00E6A573 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54570CF52602EDDE0072EEA2 /* libGLEW.2.1.0.dylib */; };
 		54FFA053260C7A5A00E6A573 /* libGLEW.2.1.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 54570CF52602EDDE0072EEA2 /* libGLEW.2.1.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		54FFA055260C7A9B00E6A573 /* libassimp.5.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FFA03D260C72F200E6A573 /* libassimp.5.0.0.dylib */; };
@@ -118,8 +118,8 @@
 		547B950326044E37008545C2 /* ao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ao.png; sourceTree = "<group>"; };
 		547B950426044E37008545C2 /* roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roughness.png; sourceTree = "<group>"; };
 		547B950A26046FE8008545C2 /* shadow_maps.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shadow_maps.cpp; sourceTree = "<group>"; };
-		54FFA030260B5EEB00E6A573 /* point_shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = point_shader.cpp; sourceTree = "<group>"; };
-		54FFA031260B5EEB00E6A573 /* point_shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = point_shader.hpp; sourceTree = "<group>"; };
+		54FFA030260B5EEB00E6A573 /* point_shadow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = point_shadow.cpp; sourceTree = "<group>"; };
+		54FFA031260B5EEB00E6A573 /* point_shadow.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = point_shadow.hpp; sourceTree = "<group>"; };
 		54FFA038260C265E00E6A573 /* point_shadow.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point_shadow.vs; sourceTree = "<group>"; };
 		54FFA039260C265E00E6A573 /* light_scene.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = light_scene.vs; sourceTree = "<group>"; };
 		54FFA03A260C266600E6A573 /* point_shadow.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point_shadow.fs; sourceTree = "<group>"; };
@@ -133,6 +133,8 @@
 		54FFA060260CB36400E6A573 /* model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
 		54FFA061260CB36400E6A573 /* model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = model.hpp; sourceTree = "<group>"; };
 		54FFA063260CB46F00E6A573 /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		54FFA064260DB0C900E6A573 /* cube.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cube.fs; sourceTree = "<group>"; };
+		54FFA066260DB47200E6A573 /* cube.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = cube.vs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,8 +433,8 @@
 		54FFA02F260B5ED700E6A573 /* point_shadow */ = {
 			isa = PBXGroup;
 			children = (
-				54FFA030260B5EEB00E6A573 /* point_shader.cpp */,
-				54FFA031260B5EEB00E6A573 /* point_shader.hpp */,
+				54FFA030260B5EEB00E6A573 /* point_shadow.cpp */,
+				54FFA031260B5EEB00E6A573 /* point_shadow.hpp */,
 			);
 			path = point_shadow;
 			sourceTree = "<group>";
@@ -440,6 +442,7 @@
 		54FFA035260C1C6900E6A573 /* point_shadow */ = {
 			isa = PBXGroup;
 			children = (
+				54FFA066260DB47200E6A573 /* cube.vs */,
 				54FFA057260C9FCD00E6A573 /* obj.vs */,
 				54FFA058260C9FDC00E6A573 /* light.vs */,
 			);
@@ -451,6 +454,7 @@
 			children = (
 				54FFA059260C9FF300E6A573 /* obj.fs */,
 				54FFA05A260CA00500E6A573 /* light.fs */,
+				54FFA064260DB0C900E6A573 /* cube.fs */,
 			);
 			path = point_shadow;
 			sourceTree = "<group>";
@@ -536,7 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				547B950B26046FE8008545C2 /* shadow_maps.cpp in Sources */,
-				54FFA032260B5EEB00E6A573 /* point_shader.cpp in Sources */,
+				54FFA032260B5EEB00E6A573 /* point_shadow.cpp in Sources */,
 				54570CEB2602EDAE0072EEA2 /* main.cpp in Sources */,
 				547B94542602F244008545C2 /* glad.c in Sources */,
 				54FFA062260CB36400E6A573 /* model.cpp in Sources */,
