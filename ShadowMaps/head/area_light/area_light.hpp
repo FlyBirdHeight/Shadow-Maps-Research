@@ -8,6 +8,8 @@
 #include "camera.h"
 #include "window.h"
 #include "filesystem.h"
+#include "area.h"
+#include "block.h"
 struct AreaLightData{
     glm::vec3 position;
     glm::mat3 basis;
@@ -22,7 +24,7 @@ public:
 private:
     unsigned int roomVAO = 0, roomVBO = 0;
     std::string lightVs = FileSystem::getPath("shader/vs/area_light/area_light.vs");
-    std::string lightFs = FileSystem::getPath("shader/vs/area_light/area_light.fs");
+    std::string lightFs = FileSystem::getPath("shader/fs/area_light/area_light.fs");
     void initRender();
     void initRoom();
 };

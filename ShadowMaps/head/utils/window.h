@@ -29,9 +29,13 @@ public:
     
     GLFWwindow* createWindow(){
         glfwInit();
-        glfwInitHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwInitHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-        glfwInitHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    #ifdef __APPLE__
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    #endif
+        this->getMonitorInfo();
         GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, WINDOW_TITLE.c_str(), NULL, NULL);
         if(window == NULL){
             std::cout << "Failed to create GLFW window" << std::endl;
@@ -42,14 +46,51 @@ public:
         glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
         glfwSetCursorPosCallback(window, mouse_callback);
         glfwSetScrollCallback(window, scroll_callback);
-//        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
         {
             std::cout << "Failed to initialize GLAD" << std::endl;
         }
         glEnable(GL_DEPTH_TEST);
-//        glEnable(GL_CULL_FACE);
         return window;
+    }
+    
+    void getMonitorInfo(){
+        int monitorCount;
+        GLFWmonitor** pMonitor = glfwGetMonitors(&monitorCount);
+        std::cout << "当前屏幕个数" << monitorCount << std::endl;
+        for(int i = 0; i < monitorCount; ++i){
+            int scene_x, scene_y;
+            const GLFWvidmode * model = glfwGetVideoMode(pMonitor[i]);
+            scene_x = model->width;
+            scene_y = model->height;
+            std::cout << "当前屏幕" << i << "的尺寸为：" << scene_x << "*" << scene_y << std::endl;
+        }
+    }
+    
+    void processInput(GLFWwindow *window, float deltaTime)
+    {
+        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+            glfwSetWindowShouldClose(window, true);
+        }
+        else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+            camera.ProcessKeyboard(FORWARD, deltaTime);
+        }
+        else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+            camera.ProcessKeyboard(BACKWARD, deltaTime);
+        }
+        else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+            camera.ProcessKeyboard(LEFT, deltaTime);
+        }
+        else if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+            camera.ProcessKeyboard(RIGHT, deltaTime);
+        }
+        else if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+            camera.ProcessKeyboard(TOP, deltaTime);
+        }
+        else if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
+            camera.ProcessKeyboard(DOWN, deltaTime);
+        }
     }
 };
 

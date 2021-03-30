@@ -48,6 +48,8 @@
 /* Begin PBXFileReference section */
 		542BED4A2611B46D00E0E489 /* area_light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = area_light.vs; sourceTree = "<group>"; };
 		542BED4B2611E36800E0E489 /* area_light.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = area_light.fs; sourceTree = "<group>"; };
+		542BED4D26131B3500E0E489 /* area.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = area.h; sourceTree = "<group>"; };
+		542BED4E26131C3300E0E489 /* block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = block.h; sourceTree = "<group>"; };
 		54570CE72602EDAE0072EEA2 /* ShadowMaps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ShadowMaps; sourceTree = BUILT_PRODUCTS_DIR; };
 		54570CEA2602EDAE0072EEA2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ShadowMaps/main.cpp; sourceTree = SOURCE_ROOT; };
 		54570CF32602EDB70072EEA2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -192,6 +194,15 @@
 			path = area_light;
 			sourceTree = "<group>";
 		};
+		542BED4C26131B2600E0E489 /* cornell_box */ = {
+			isa = PBXGroup;
+			children = (
+				542BED4D26131B3500E0E489 /* area.h */,
+				542BED4E26131C3300E0E489 /* block.h */,
+			);
+			path = cornell_box;
+			sourceTree = "<group>";
+		};
 		54570CDE2602EDAE0072EEA2 = {
 			isa = PBXGroup;
 			children = (
@@ -212,9 +223,9 @@
 		54570CE92602EDAE0072EEA2 /* ShadowMaps */ = {
 			isa = PBXGroup;
 			children = (
-				547B94462602F07E008545C2 /* head */,
 				547B94532602F244008545C2 /* glad.c */,
 				54570CEA2602EDAE0072EEA2 /* main.cpp */,
+				547B94462602F07E008545C2 /* head */,
 				547B94BE26044E37008545C2 /* resources */,
 				547B94B226044A37008545C2 /* shader */,
 			);
@@ -249,6 +260,7 @@
 		547B944B2602F12A008545C2 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				542BED4C26131B2600E0E489 /* cornell_box */,
 				547B944E2602F16D008545C2 /* shader.h */,
 				547B944F2602F175008545C2 /* camera.h */,
 				547B94512602F1F3008545C2 /* mesh.h */,

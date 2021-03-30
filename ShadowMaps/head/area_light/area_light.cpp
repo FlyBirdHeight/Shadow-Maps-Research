@@ -7,23 +7,22 @@ static int frame = 0;
 void AreaLight::createLight(){
     Window lightWindow(this->SCR_WIDTH, this->SCR_HEIGHT, "area light");
     GLFWwindow* window = lightWindow.createWindow();
-    Shader shader(this->lightVs.c_str(), this->lightFs.c_str());
-    shader.use();
-    shader.setInt("planeTexture", 0);
-    glm::vec3 lightPos = glm::vec3(0.0, 0.0, 0.0);
+    Shader shader(this->lightVs, this->lightFs);
+    glm::vec3 lightPos = glm::vec3(0.0, 1.0, 0.0);
     while (!glfwWindowShouldClose(window)) {
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
         frame++;
-        
-        glClearColor(0.4, 0.4, 0.4, 1.0);
+
+        lightWindow.processInput(window, deltaTime);
+        glClearColor((float) 119 / 255, (float)209 / 255, (float) 249 / 255, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         shader.use();
         glm::mat4 model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, -5.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(10.0f));
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)this->SCR_WIDTH / (float)this->SCR_HEIGHT, 0.1f, 100.0f);
+        model = glm::scale(model, glm::vec3(0.1f));
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)this->SCR_WIDTH / (float)this->SCR_HEIGHT, 0.1f, 300.0f);
         glm::mat4 view = camera.GetViewMatrix();
         glm::vec3 viewPos = camera.Position;
         shader.setMat4("projection", projection);
@@ -31,16 +30,14 @@ void AreaLight::createLight(){
         shader.setMat4("view", view);
         shader.setVec3("viewPos", viewPos);
         shader.setVec3("lightPos", lightPos);
+        shader.setBool("is_light", true);
         this->initRoom();
-        
-        
-        
-        
-        if (currentFrame - lastFrame > 0.25 && frame > 10) {
+
+        //帧数计算
+        if (currentFrame - fpsFrame > 0.25 && frame > 10) {
             double fps = (double) frame / (currentFrame - fpsFrame);
             fpsFrame = currentFrame;
             frame = 0;
-            
             std::cout << "当前屏幕帧数：" << fps << std::endl;
         }
         glfwSwapBuffers(window);
@@ -55,67 +52,37 @@ void AreaLight::initRender(){
 
 void AreaLight::initRoom(){
     if(this->roomVAO == 0){
-        float vertices[] = {
-            // back face
-            -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f, (float)224/255, (float)186/255, (float)157/255, 0.0f, 0.0f, // bottom-left
-             1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f, (float)224/255, (float)186/255, (float)157/255, 1.0f, 1.0f, // top-right
-             1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f, (float)224/255, (float)186/255, (float)157/255, 1.0f, 0.0f, // bottom-right
-             1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f, (float)224/255, (float)186/255, (float)157/255, 1.0f, 1.0f, // top-right
-            -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f, (float)224/255, (float)186/255, (float)157/255, 0.0f, 0.0f, // bottom-left
-            -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f, (float)224/255, (float)186/255, (float)157/255, 0.0f, 1.0f, // top-left
-            // front face
-            -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f, 0.0f, // bottom-left
-             1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f, 0.0f, // bottom-right
-             1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f, 1.0f, // top-right
-             1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f, 1.0f, // top-right
-            -1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f, 1.0f, // top-left
-            -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f, 0.0f, // bottom-left
-            // left face
-            -1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f, (float)214/255, (float)44/255, (float)35/255, 1.0f, 0.0f, // top-right
-            -1.0f,  1.0f, -1.0f, -1.0f,  0.0f,  0.0f, (float)214/255, (float)44/255, (float)35/255, 1.0f, 1.0f, // top-left
-            -1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, (float)214/255, (float)44/255, (float)35/255, 0.0f, 1.0f, // bottom-left
-            -1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, (float)214/255, (float)44/255, (float)35/255, 0.0f, 1.0f, // bottom-left
-            -1.0f, -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, (float)214/255, (float)44/255, (float)35/255, 0.0f, 0.0f, // bottom-right
-            -1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f, (float)214/255, (float)44/255, (float)35/255, 1.0f, 0.0f, // top-right
-            // right face
-             1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f, (float)85/255, (float)151/255, (float)57/255, 1.0f, 0.0f, // top-left
-             1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f, (float)85/255, (float)151/255, (float)57/255, 0.0f, 1.0f, // bottom-right
-             1.0f,  1.0f, -1.0f,  1.0f,  0.0f,  0.0f, (float)85/255, (float)151/255, (float)57/255, 1.0f, 1.0f, // top-right
-             1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f, (float)85/255, (float)151/255, (float)57/255, 0.0f, 1.0f, // bottom-right
-             1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f, (float)85/255, (float)151/255, (float)57/255, 1.0f, 0.0f, // top-left
-             1.0f, -1.0f,  1.0f,  1.0f,  0.0f,  0.0f, (float)85/255, (float)151/255, (float)57/255, 0.0f, 0.0f, // bottom-left
-            // bottom face
-            -1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 0.0f, 1.0f, // top-right
-             1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 1.0f, 1.0f, // top-left
-             1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 1.0f, 0.0f, // bottom-left
-             1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 1.0f, 0.0f, // bottom-left
-            -1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 0.0f, 0.0f, // bottom-right
-            -1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 0.0f, 1.0f, // top-right
-            // top face
-            -1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 0.0f, 1.0f, // top-left
-             1.0f,  1.0f , 1.0f,  0.0f,  1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 1.0f, 0.0f, // bottom-right
-             1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 1.0f, 1.0f, // top-right
-             1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 1.0f, 0.0f, // bottom-right
-            -1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 0.0f, 1.0f, // top-left
-            -1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f, (float)224/255, (float)186/255, (float)157/255, 0.0f, 0.0f  // bottom-left
-        };
-        glGenBuffers(1, &this->roomVBO);
+        Area area;
+        std::vector<glm::vec3> returnData = area.generateData();
+        float vertices[returnData.size() * 3];
+        int count = 9;
+        for(unsigned int i = 0; i < returnData.size(); i += 3){
+            int j = i / 3;
+            vertices[j * count] = returnData[i].x;
+            vertices[j * count + 1] = returnData[i].y;
+            vertices[j * count + 2] = returnData[i].z;
+            vertices[j * count + 3] = returnData[i+1].x;
+            vertices[j * count + 4] = returnData[i+1].y;
+            vertices[j * count + 5] = returnData[i+1].z;
+            vertices[j * count + 6] = returnData[i+2].x;
+            vertices[j * count + 7] = returnData[i+2].y;
+            vertices[j * count + 8] = returnData[i+2].z;
+        }
         glGenVertexArrays(1, &this->roomVAO);
+        glGenBuffers(1, &this->roomVBO);
         glBindVertexArray(this->roomVAO);
         glBindBuffer(GL_ARRAY_BUFFER, this->roomVBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(3 * sizeof(float)));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(1);
-        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(6 * sizeof(float)));
+        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)(6 * sizeof(float)));
         glEnableVertexAttribArray(2);
-        glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(9 * sizeof(float)));
-        glEnableVertexAttribArray(3);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
     }
     glBindVertexArray(this->roomVAO);
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glDrawArrays(GL_TRIANGLES, 0, 30);
     glBindVertexArray(0);
 }
