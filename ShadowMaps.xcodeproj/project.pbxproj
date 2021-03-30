@@ -18,6 +18,7 @@
 		54FFA055260C7A9B00E6A573 /* libassimp.5.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FFA03D260C72F200E6A573 /* libassimp.5.0.0.dylib */; };
 		54FFA056260C7A9B00E6A573 /* libassimp.5.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 54FFA03D260C72F200E6A573 /* libassimp.5.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		54FFA062260CB36400E6A573 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54FFA060260CB36400E6A573 /* model.cpp */; };
+		54FFA07126118BE300E6A573 /* area_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54FFA06F26118BE300E6A573 /* area_light.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		542BED4A2611B46D00E0E489 /* area_light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = area_light.vs; sourceTree = "<group>"; };
+		542BED4B2611E36800E0E489 /* area_light.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = area_light.fs; sourceTree = "<group>"; };
 		54570CE72602EDAE0072EEA2 /* ShadowMaps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ShadowMaps; sourceTree = BUILT_PRODUCTS_DIR; };
 		54570CEA2602EDAE0072EEA2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ShadowMaps/main.cpp; sourceTree = SOURCE_ROOT; };
 		54570CF32602EDB70072EEA2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -139,6 +142,9 @@
 		54FFA06A261069F600E6A573 /* light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.vs; sourceTree = "<group>"; };
 		54FFA06B26106A0000E6A573 /* obj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = obj.vs; sourceTree = "<group>"; };
 		54FFA06C26106A0C00E6A573 /* obj.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = obj.frag; sourceTree = "<group>"; };
+		54FFA06F26118BE300E6A573 /* area_light.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = area_light.cpp; sourceTree = "<group>"; };
+		54FFA07026118BE300E6A573 /* area_light.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = area_light.hpp; sourceTree = "<group>"; };
+		54FFA07226118CE500E6A573 /* window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		542BED462611B43A00E0E489 /* vssm */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = vssm;
+			sourceTree = "<group>";
+		};
+		542BED472611B44000E0E489 /* vssm */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = vssm;
+			sourceTree = "<group>";
+		};
+		542BED482611B44700E0E489 /* area_light */ = {
+			isa = PBXGroup;
+			children = (
+				542BED4A2611B46D00E0E489 /* area_light.vs */,
+			);
+			path = area_light;
+			sourceTree = "<group>";
+		};
+		542BED492611B44F00E0E489 /* area_light */ = {
+			isa = PBXGroup;
+			children = (
+				542BED4B2611E36800E0E489 /* area_light.fs */,
+			);
+			path = area_light;
+			sourceTree = "<group>";
+		};
 		54570CDE2602EDAE0072EEA2 = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +235,7 @@
 		547B94462602F07E008545C2 /* head */ = {
 			isa = PBXGroup;
 			children = (
+				54FFA06D26118BCC00E6A573 /* area_light */,
 				54FFA02F260B5ED700E6A573 /* point_shadow */,
 				547B94B526044AD7008545C2 /* shadow_maps */,
 				547B944D2602F134008545C2 /* color_shadow */,
@@ -218,6 +255,7 @@
 				547B94B726044BA7008545C2 /* filesystem.h */,
 				54FFA060260CB36400E6A573 /* model.cpp */,
 				54FFA061260CB36400E6A573 /* model.hpp */,
+				54FFA07226118CE500E6A573 /* window.h */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -258,6 +296,8 @@
 		547B94B926044C58008545C2 /* fs */ = {
 			isa = PBXGroup;
 			children = (
+				542BED492611B44F00E0E489 /* area_light */,
+				542BED472611B44000E0E489 /* vssm */,
 				54FFA068261069D500E6A573 /* pcss */,
 				54FFA036260C1C7000E6A573 /* point_shadow */,
 				547B94BC26044C72008545C2 /* shadow_maps */,
@@ -268,6 +308,8 @@
 		547B94BA26044C5C008545C2 /* vs */ = {
 			isa = PBXGroup;
 			children = (
+				542BED482611B44700E0E489 /* area_light */,
+				542BED462611B43A00E0E489 /* vssm */,
 				54FFA067261069CA00E6A573 /* pcss */,
 				54FFA035260C1C6900E6A573 /* point_shadow */,
 				547B94BB26044C66008545C2 /* shadow_maps */,
@@ -506,6 +548,15 @@
 			path = pcss;
 			sourceTree = "<group>";
 		};
+		54FFA06D26118BCC00E6A573 /* area_light */ = {
+			isa = PBXGroup;
+			children = (
+				54FFA06F26118BE300E6A573 /* area_light.cpp */,
+				54FFA07026118BE300E6A573 /* area_light.hpp */,
+			);
+			path = area_light;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -568,6 +619,7 @@
 				54570CEB2602EDAE0072EEA2 /* main.cpp in Sources */,
 				547B94542602F244008545C2 /* glad.c in Sources */,
 				54FFA062260CB36400E6A573 /* model.cpp in Sources */,
+				54FFA07126118BE300E6A573 /* area_light.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
