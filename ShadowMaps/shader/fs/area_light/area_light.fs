@@ -16,7 +16,7 @@ void main(){
     vec3 color = fs_in.Color;
     vec3 normal = normalize(fs_in.Normal);
     
-    vec3 lightColor = 0.3 * vec3(1.0, 1.0, 1.0);
+    vec3 lightColor = vec3(10.0);
     vec3 fragPos = fs_in.FragPos;
     vec3 lightDir = normalize(lightPos - fragPos);
     vec3 viewDir = normalize(viewPos - fragPos);
@@ -32,11 +32,9 @@ void main(){
     
     vec3 light = (ambient + diffuse + specular) * color;
     
-//    if(is_light){
-//
-//    }else{
-//        FragColor = vec4(fs_in.Color, 1.0);
-//    }
-    FragColor = vec4(light, 1.0);
-//    FragColor = vec4(fs_in.Color, 1.0);
+    if(is_light){
+        FragColor = vec4(light, 1.0);
+    }else{
+        FragColor = vec4(fs_in.Color, 1.0);
+    }
 }

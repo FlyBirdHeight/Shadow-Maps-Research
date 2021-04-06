@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5416754A2615ACF500B4EA6A /* task01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 541675482615ACF500B4EA6A /* task01.cpp */; };
 		54570CEB2602EDAE0072EEA2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54570CEA2602EDAE0072EEA2 /* main.cpp */; };
 		54570CF42602EDB70072EEA2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54570CF32602EDB70072EEA2 /* OpenGL.framework */; };
 		54570CFA2602EDF70072EEA2 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54570CF92602EDF70072EEA2 /* libglfw.3.3.dylib */; };
@@ -46,10 +47,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		541675482615ACF500B4EA6A /* task01.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = task01.cpp; sourceTree = "<group>"; };
+		541675492615ACF500B4EA6A /* task01.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = task01.hpp; sourceTree = "<group>"; };
+		5416754F2615AD9E00B4EA6A /* light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.vs; sourceTree = "<group>"; };
+		541675502615ADAF00B4EA6A /* shadow.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadow.vs; sourceTree = "<group>"; };
+		541675512615ADBD00B4EA6A /* obj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = obj.vs; sourceTree = "<group>"; };
+		541675532615ADD300B4EA6A /* light.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.fs; sourceTree = "<group>"; };
+		541675542615ADE500B4EA6A /* shadow.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadow.fs; sourceTree = "<group>"; };
+		541675552615ADF700B4EA6A /* obj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = obj.fs; sourceTree = "<group>"; };
 		542BED4A2611B46D00E0E489 /* area_light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = area_light.vs; sourceTree = "<group>"; };
 		542BED4B2611E36800E0E489 /* area_light.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = area_light.fs; sourceTree = "<group>"; };
 		542BED4D26131B3500E0E489 /* area.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = area.h; sourceTree = "<group>"; };
 		542BED4E26131C3300E0E489 /* block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = block.h; sourceTree = "<group>"; };
+		542BED4F2614142E00E0E489 /* light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.vs; sourceTree = "<group>"; };
+		542BED502614143B00E0E489 /* light.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.fs; sourceTree = "<group>"; };
 		54570CE72602EDAE0072EEA2 /* ShadowMaps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ShadowMaps; sourceTree = BUILT_PRODUCTS_DIR; };
 		54570CEA2602EDAE0072EEA2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ShadowMaps/main.cpp; sourceTree = SOURCE_ROOT; };
 		54570CF32602EDB70072EEA2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -140,10 +151,6 @@
 		54FFA063260CB46F00E6A573 /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		54FFA064260DB0C900E6A573 /* cube.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cube.fs; sourceTree = "<group>"; };
 		54FFA066260DB47200E6A573 /* cube.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = cube.vs; sourceTree = "<group>"; };
-		54FFA069261069E800E6A573 /* light.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.frag; sourceTree = "<group>"; };
-		54FFA06A261069F600E6A573 /* light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.vs; sourceTree = "<group>"; };
-		54FFA06B26106A0000E6A573 /* obj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = obj.vs; sourceTree = "<group>"; };
-		54FFA06C26106A0C00E6A573 /* obj.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = obj.frag; sourceTree = "<group>"; };
 		54FFA06F26118BE300E6A573 /* area_light.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = area_light.cpp; sourceTree = "<group>"; };
 		54FFA07026118BE300E6A573 /* area_light.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = area_light.hpp; sourceTree = "<group>"; };
 		54FFA07226118CE500E6A573 /* window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
@@ -164,6 +171,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		541675462615ACE000B4EA6A /* games202 */ = {
+			isa = PBXGroup;
+			children = (
+				541675472615ACE800B4EA6A /* task01 */,
+			);
+			path = games202;
+			sourceTree = "<group>";
+		};
+		541675472615ACE800B4EA6A /* task01 */ = {
+			isa = PBXGroup;
+			children = (
+				541675482615ACF500B4EA6A /* task01.cpp */,
+				541675492615ACF500B4EA6A /* task01.hpp */,
+			);
+			path = task01;
+			sourceTree = "<group>";
+		};
+		5416754B2615AD3000B4EA6A /* games202 */ = {
+			isa = PBXGroup;
+			children = (
+				5416754C2615AD3600B4EA6A /* task01 */,
+			);
+			path = games202;
+			sourceTree = "<group>";
+		};
+		5416754C2615AD3600B4EA6A /* task01 */ = {
+			isa = PBXGroup;
+			children = (
+				5416754F2615AD9E00B4EA6A /* light.vs */,
+				541675502615ADAF00B4EA6A /* shadow.vs */,
+				541675512615ADBD00B4EA6A /* obj.vs */,
+			);
+			path = task01;
+			sourceTree = "<group>";
+		};
+		5416754D2615AD3C00B4EA6A /* games202 */ = {
+			isa = PBXGroup;
+			children = (
+				5416754E2615AD8E00B4EA6A /* task01 */,
+			);
+			path = games202;
+			sourceTree = "<group>";
+		};
+		5416754E2615AD8E00B4EA6A /* task01 */ = {
+			isa = PBXGroup;
+			children = (
+				541675532615ADD300B4EA6A /* light.fs */,
+				541675542615ADE500B4EA6A /* shadow.fs */,
+				541675552615ADF700B4EA6A /* obj.fs */,
+			);
+			path = task01;
+			sourceTree = "<group>";
+		};
 		542BED462611B43A00E0E489 /* vssm */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				542BED4A2611B46D00E0E489 /* area_light.vs */,
+				542BED4F2614142E00E0E489 /* light.vs */,
 			);
 			path = area_light;
 			sourceTree = "<group>";
@@ -190,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				542BED4B2611E36800E0E489 /* area_light.fs */,
+				542BED502614143B00E0E489 /* light.fs */,
 			);
 			path = area_light;
 			sourceTree = "<group>";
@@ -246,6 +308,7 @@
 		547B94462602F07E008545C2 /* head */ = {
 			isa = PBXGroup;
 			children = (
+				541675462615ACE000B4EA6A /* games202 */,
 				54FFA06D26118BCC00E6A573 /* area_light */,
 				54FFA02F260B5ED700E6A573 /* point_shadow */,
 				547B94B526044AD7008545C2 /* shadow_maps */,
@@ -308,9 +371,9 @@
 		547B94B926044C58008545C2 /* fs */ = {
 			isa = PBXGroup;
 			children = (
+				5416754D2615AD3C00B4EA6A /* games202 */,
 				542BED492611B44F00E0E489 /* area_light */,
 				542BED472611B44000E0E489 /* vssm */,
-				54FFA068261069D500E6A573 /* pcss */,
 				54FFA036260C1C7000E6A573 /* point_shadow */,
 				547B94BC26044C72008545C2 /* shadow_maps */,
 			);
@@ -320,9 +383,9 @@
 		547B94BA26044C5C008545C2 /* vs */ = {
 			isa = PBXGroup;
 			children = (
+				5416754B2615AD3000B4EA6A /* games202 */,
 				542BED482611B44700E0E489 /* area_light */,
 				542BED462611B43A00E0E489 /* vssm */,
-				54FFA067261069CA00E6A573 /* pcss */,
 				54FFA035260C1C6900E6A573 /* point_shadow */,
 				547B94BB26044C66008545C2 /* shadow_maps */,
 			);
@@ -542,24 +605,6 @@
 			path = point_shadow;
 			sourceTree = "<group>";
 		};
-		54FFA067261069CA00E6A573 /* pcss */ = {
-			isa = PBXGroup;
-			children = (
-				54FFA06A261069F600E6A573 /* light.vs */,
-				54FFA06B26106A0000E6A573 /* obj.vs */,
-			);
-			path = pcss;
-			sourceTree = "<group>";
-		};
-		54FFA068261069D500E6A573 /* pcss */ = {
-			isa = PBXGroup;
-			children = (
-				54FFA069261069E800E6A573 /* light.frag */,
-				54FFA06C26106A0C00E6A573 /* obj.frag */,
-			);
-			path = pcss;
-			sourceTree = "<group>";
-		};
 		54FFA06D26118BCC00E6A573 /* area_light */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +672,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				547B950B26046FE8008545C2 /* shadow_maps.cpp in Sources */,
+				5416754A2615ACF500B4EA6A /* task01.cpp in Sources */,
 				54FFA032260B5EEB00E6A573 /* point_shadow.cpp in Sources */,
 				54570CEB2602EDAE0072EEA2 /* main.cpp in Sources */,
 				547B94542602F244008545C2 /* glad.c in Sources */,

@@ -27,7 +27,7 @@ void ShadowMaps::createWindow(){
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    
+
     #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     #endif
@@ -80,21 +80,21 @@ void ShadowMaps::render(GLFWwindow *window){
     glEnableVertexAttribArray(2);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glBindVertexArray(0);
-    
+
     this->initDepthTexture();
-    
+
     float near_plane = 1.0f;
     float far_plane = 7.5f;
-    
+
     Shader lightSceneShader(FileSystem::getPath("shader/vs/shadow_maps/light_scene.vs").c_str(), FileSystem::getPath("shader/fs/shadow_maps/light_scene.fs").c_str());
     Shader objShader(FileSystem::getPath("shader/vs/shadow_maps/point_shadow.vs").c_str(), FileSystem::getPath("shader/fs/shadow_maps/point_shadow.fs").c_str());
-    
+
     objShader.use();
     objShader.setInt("diffuseTexture", 0);
     objShader.setInt("shadowMap", 1);
 
     unsigned int woodTexture = loadTexture(FileSystem::getPath("resources/image/wood.png").c_str());
-    
+
     glm::vec3 lightPos(-2.0f, 4.0f, -1.0f);
     while (!glfwWindowShouldClose(window)) {
         float currentFrame = glfwGetTime();
@@ -132,11 +132,11 @@ void ShadowMaps::render(GLFWwindow *window){
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, this->depthTexture);
         this->renderScene(objShader);
-        
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-    
+
     glfwTerminate();
 }
 

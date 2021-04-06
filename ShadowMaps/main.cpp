@@ -1,8 +1,8 @@
-#include "area_light.hpp"
+#include "task01.hpp"
 
 int main() {
-    AreaLight objInfo;
-    objInfo.createLight();
+    Task01 objInfo;
+    objInfo.render();
     
     return 0;
 }

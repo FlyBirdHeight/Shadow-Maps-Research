@@ -16,13 +16,14 @@ static float lastX = 0.0;
 static float lastY = 0.0;
 static bool firstMouse = true;
 
-static Camera camera(glm::vec3(0.0, 0.0, 3.0));
+static Camera camera(glm::vec3(0.0, 5.0, 5.0));
 class Window{
 public:
     unsigned int SCR_WIDTH;
     unsigned int SCR_HEIGHT;
+    bool noMouse;
     std::string WINDOW_TITLE;
-    Window(unsigned int width = 800, unsigned int height = 600, std::string title = "window"): SCR_WIDTH(width), SCR_HEIGHT(height), WINDOW_TITLE(title){
+    Window(unsigned int width = 800, unsigned int height = 600, std::string title = "window", bool noMouse = true): SCR_WIDTH(width), SCR_HEIGHT(height), WINDOW_TITLE(title), noMouse(noMouse){
         lastX = (float)width / 2.0;
         lastY = (float)height / 2.0;
     }
@@ -46,7 +47,9 @@ public:
         glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
         glfwSetCursorPosCallback(window, mouse_callback);
         glfwSetScrollCallback(window, scroll_callback);
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        if(noMouse){
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        }
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
         {
             std::cout << "Failed to initialize GLAD" << std::endl;

@@ -51,12 +51,12 @@ public:
         };
         color.push_back(glm::vec3(1.0, 0.0, 0.0));
         back = {
-            glm::vec3(552.8, 0.0, 0.0),
-            glm::vec3(0.0, 0.0, 0.0),
+            glm::vec3(549.6, 0.0, 559.2),
             glm::vec3(0.0, 0.0, 559.2),
-            glm::vec3(552.8, 0.0, 0.0),
-            glm::vec3(0.0, 0.0, 559.2),
-            glm::vec3(549.6, 0.0, 559.2)
+            glm::vec3(0.0, 548.8, 559.2),
+            glm::vec3(549.6, 0.0, 559.2),
+            glm::vec3(0.0, 548.8, 559.2),
+            glm::vec3(556.0, 548.8, 559.2)
         };
         color.push_back(glm::vec3(1.0f, 1.0f, 1.0f));
         right = {
@@ -65,25 +65,15 @@ public:
             glm::vec3(0.0, 548.8, 0.0),
             glm::vec3(0.0, 0.0, 559.2),
             glm::vec3(0.0, 548.8, 0.0),
-            glm::vec3(556.0, 548.8, 0.0)
+            glm::vec3(0.0, 548.8, 559.2)
         };
         color.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-        ceilingWindow = {
-            glm::vec3(343.0, 548.8, 227.0),
-            glm::vec3(343.0, 548.8, 332.0),
-            glm::vec3(213.0, 548.8, 332.0),
-            glm::vec3(343.0, 548.8, 227.0),
-            glm::vec3(213.0, 548.8, 332.0),
-            glm::vec3(213.0, 548.8, 227.0)
-        };
-        color.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
         
         vertices.push_back(bottom);
         vertices.push_back(top);
         vertices.push_back(left);
         vertices.push_back(back);
         vertices.push_back(right);
-        vertices.push_back(ceilingWindow);
         
         for(unsigned int i = 0; i < vertices.size(); ++i){
             glm::vec3 normal = this->calculateNormal(vertices[i][0], vertices[i][1], vertices[i][2]);

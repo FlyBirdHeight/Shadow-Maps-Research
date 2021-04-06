@@ -23,10 +23,16 @@ public:
     unsigned int SCR_HEIGHT = 600, SCR_WIDTH = 800;
 private:
     unsigned int roomVAO = 0, roomVBO = 0;
+    unsigned int blockVAO = 0, blockVBO = 0;
+    unsigned int lightVAO = 0, lightVBO = 0;
+    glm::vec3 lightPos;
     std::string lightVs = FileSystem::getPath("shader/vs/area_light/area_light.vs");
     std::string lightFs = FileSystem::getPath("shader/fs/area_light/area_light.fs");
-    void initRender();
-    void initRoom();
+    void initRender(const Shader &shader, glm::vec3 lightPos);
+    void initRoom(const Shader &shader);
+    void initBox();
+    void initBlock();
+    void initLight();
 };
 
 #endif /* area_light_hpp */
